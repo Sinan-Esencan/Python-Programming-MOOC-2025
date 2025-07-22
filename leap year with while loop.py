@@ -11,8 +11,9 @@ while True:
     elif year % 400 == 0:
         leap_year = True
         break
+        
 ''' alt:
-    if year % 400 == 0:
+    if year % 100 == 0 and year % 400 == 0 :
         leap_year = True
         break
     elif year % 4 == 0 and year % 100 != 0:
@@ -22,13 +23,9 @@ while True:
 
 """ alt2:
     if year % 100 == 0:
-
         if year % 400 == 0:
-
             break
-
     elif year % 4 == 0:
-
         break
 """
 

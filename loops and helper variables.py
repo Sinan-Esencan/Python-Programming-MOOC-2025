@@ -8,7 +8,7 @@ while True:
         success = True
         break
 
-    if attempts == 3:
+    if attempts == 3: #bu if sta ilkiyle yer degistirseydi 3. defada girilen dogru sifre durumunda hata alırdık
         success = False
         break
 

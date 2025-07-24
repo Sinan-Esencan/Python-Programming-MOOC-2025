@@ -15,6 +15,23 @@ while total < limit:
 print("The consecutive sum:", indexes, "=", total) #fazladan sıfır print eder
 
 
+#V1b: 0 print etmeyen versiyonu:
+limit = int(input("Limit: "))
+i = 1
+total = 0
+indexes = ""
+
+while total < limit:
+    if indexes == "":
+        indexes = f"{i}"
+    else:
+        indexes += f" + {i}"
+    total += i
+    i += 1
+
+print("The consecutive sum:", indexes, "=", total)
+
+
 #V2:
 limit = int(input("Limit: "))
 i = 1

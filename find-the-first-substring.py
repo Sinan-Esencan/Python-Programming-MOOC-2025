@@ -8,8 +8,9 @@ char = input("Please type in a character")
 
 index = word.find(char)
 
-if index >= 0 and len(word[index:index+3]) == 3: #aslında ilk conditiona gerek yok
+if index >= 0 and len(word[index:index+3]) == 3:
     print(word[index:index+3])
+
 
 #V2: siteden:
 word = input("Please type in a word: ")

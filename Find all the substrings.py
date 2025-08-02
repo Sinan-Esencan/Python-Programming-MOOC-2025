@@ -10,8 +10,7 @@ while True:
         break
     
     if word[0] == char:
-        if len(word) >= 3:
-            print(word[0:3])
+        print(word[0:3])
 
     word = word[1:]
 

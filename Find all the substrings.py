@@ -6,7 +6,7 @@ char = input("Please type in a character")
 
 while True:
 
-    if len(word) == 0:
+    if len(word) == 2:
         break
     
     if word[0] == char:
@@ -38,3 +38,11 @@ while index + 3 <= len(word):
     if word[index] == character:
         print(word[index:index+3])
     index += 1
+
+#alt4: mooc'nin for loop versiyonu:
+word = input("Please type in a word: ")
+character = input("Please type in a character: ")
+
+for index in range(len(word) - 2):
+    if word[index] == character:
+        print(word[index:index+3])

@@ -15,6 +15,7 @@ def chessboard(num):
 if __name__ == "__main__":
     chessboard(3)
 
+
 #alt2:
 def chessboard(n):
     for i in range(n):
@@ -24,6 +25,22 @@ def chessboard(n):
                 row += "1"
             else:
                 row += "0"
+        print(row)
+
+if __name__ == "__main__":
+    chessboard(3)
+
+
+#alt2b: char var kullanılarak:
+def chessboard(n):
+    for i in range(n):
+        row = ""
+        for j in range(n):
+            if (i + j) % 2 == 0:
+                char = "1"
+            else:
+                char = "0"
+            row += char
         print(row)
 
 if __name__ == "__main__":

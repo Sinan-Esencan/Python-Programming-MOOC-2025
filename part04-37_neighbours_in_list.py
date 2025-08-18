@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print(longest_series_of_neighbours(my_list))
 
 
-#V2 MOOC:
+#V2 MOOC: daha performanslı ve std bir algoritma:
 def longest_series_of_neighbours(my_list:list):
     longest=1
     result=1
@@ -29,7 +29,12 @@ def longest_series_of_neighbours(my_list:list):
         else:
             result=1
         longest=max(longest,result)
+        #alt: max metodu yerine:
+        # if result > longest:
+        #     longest = result
     return longest
+
+
 
 #ilk hatalı denemelerim:
 #1) burada problem new_list listesi sıfırlandıktan sonra onceki seri daha uzun olursa: 

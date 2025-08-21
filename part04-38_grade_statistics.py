@@ -1,5 +1,3 @@
-#açıklama çok uzun, git siteden bak
-
 def exercise_point_calculator():
     list_pointsduo = []
     while True:
@@ -13,11 +11,11 @@ def exercise_point_calculator():
             #lst = points.split()
             #list_pointsduo.append([int(lst[0]),int(lst[1])])
 #list_pointsduo.append(list(points.split())) veya list_pointsduo.append(points.split()) denseydi cevap aynı olurdu ve notları int'e cevirmezdi
-#ancak tur degistirme islemini map() ile yapsak o zaman list()'in onemi olurdu: list_pointsduo.append(list(map(int, points.split()))) -bkz asagıdaki alt2-
+#ancak tur degistirme islemini map() ile yapsak o zaman list()'in onemi olurdu: list_pointsduo.append(list(map(int, points.split()))) -bkz asagıdaki alt-
         except ValueError:
             print("Enter Valid number!")
 
-
+    
 def grade_calculator(list_pointsduo:list):
     grade_list = []
     total_points_list = []
@@ -46,7 +44,6 @@ def grade_calculator(list_pointsduo:list):
 
     average_point = average_point_calculator(total_points_list)
     return grade_list, average_point
-
 
 def average_point_calculator(total_points_list:list):
     return round(sum(total_points_list)/len(total_points_list),1)
@@ -94,5 +91,9 @@ def exercise_point_calculator():
             x, y = map(int, points.split())
             list_pointsduo.append([x,y])
 #alt: list_pointsduo.append(list(map(int, points.split())))            
+#alt2: tamamen parcalayarak:
+# parcalar = points.split()
+# pieces = map(int, parcalar)
+# list_pointsduo.append(list(pieces))            
         except ValueError:
             print("Enter Valid number!")

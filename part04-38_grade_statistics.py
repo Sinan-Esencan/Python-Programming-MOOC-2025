@@ -45,6 +45,7 @@ def grade_calculator(list_pointsduo:list):
     average_point = average_point_calculator(total_points_list)
     return grade_list, average_point
 
+
 def average_point_calculator(total_points_list:list):
     return round(sum(total_points_list)/len(total_points_list),1)
 # return etmek yerine global variable yaratılabilirdi
@@ -80,7 +81,7 @@ main() #normalde if __name__ == "__main__": blok icerisinde
 
 
 
-#V2: map() kullanmak cok fazla conversion varsa pratiklik saglar:
+#V2: map() kullanmak cok fazla data conversion varsa pratiklik saglar:
 def exercise_point_calculator():
     list_pointsduo = []
     while True:
@@ -97,3 +98,56 @@ def exercise_point_calculator():
 # list_pointsduo.append(list(pieces))            
         except ValueError:
             print("Enter Valid number!")
+
+
+
+
+# *V23 - Mooc.fi: daha hafıza dostu, cunku 6 elemanlı grades listesi frekans sayacı olarak kullanılıyor,
+# ve count() kullanılmıyor. Diğer yandan grade_distribution() ve grade_calculator() fonksiyonlarında
+# tum puan listesini iterate ettigimiz loop kullanıyoruz*
+def exam_and_exercise_completed(inpt):
+    space = inpt.find(" ")
+    exam = int(inpt[:space])
+    exercise = int(inpt[space+1:])
+    return [exam, exercise]
+
+def exercise_points(amount):
+    return amount // 10
+
+def grade(points):
+    boundary = [0, 15, 18, 21, 24, 28]
+    for i in range(5, -1, -1):
+        if points >= boundary[i]:
+            return i
+
+def mean(points):
+    return sum(points) / len(points)
+
+def main():
+    points = []
+    grades = [0] * 6 #6 farklı not derecesi
+    #alt - dictonary: grades = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+    while True:
+        inpt = input("Exam points and exercises completed: ")
+        if len(inpt) == 0:
+            break
+        exam_and_exercises = exam_and_exercise_completed(inpt)
+        exercise_pnts = exercise_points(exam_and_exercises[1])
+        total_points = exam_and_exercises[0] + exercise_pnts
+        points.append(total_points)
+        grd = grade(total_points)
+        if exam_and_exercises[0] < 10:
+            grd = 0
+        grades[grd] += 1
+
+    pass_pros = 100 * (len(points) - grades[0]) / len(points)
+
+    print("Statistics:")
+    print(f"Points average: {mean(points):.1f}")
+    print(f"Pass percentage: {pass_pros:.1f}")
+    print("Grade distribution:")
+    for i in range(5, -1, -1):
+        stars = "*" * grades[i]
+        print(f"  {i}: {stars}")
+
+main()

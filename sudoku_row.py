@@ -7,7 +7,7 @@ def row_correct(sudoku: list, row_no: int):
         if square != 0 and square in repeated:
             return False
 #square != 0 conditionı en azından bir yerde gerekiyor
-        if square != 0:
+        elif square != 0:
             repeated.append(square)
     return True
 

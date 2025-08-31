@@ -56,3 +56,15 @@ def copy_and_add(sudoku: list, row_no: int, column_no: int, number:int):
         new_list.append(r[:])
     new_list[row_no][column_no] = number
     return new_list
+
+#V3:    
+def copy_and_add(sudoku: list, row_no: int, column_no: int, number: int):
+    new_list = []
+    for row in sudoku:
+        new_row = []  # Her satır için yeni bir liste oluştur
+        for square in row:
+            new_row.append(square)  # Her kareyi yeni satıra ekle
+        new_list.append(new_row)  # Yeni satırı ana listeye ekle
+    
+    new_list[row_no][column_no] = number
+    return new_list

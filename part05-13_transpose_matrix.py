@@ -4,10 +4,10 @@
 
 def transpose(matrix: list):
     for row in range(len(matrix)):
-        for square in range(row, len(matrix[row])):
-            temp = matrix[square][row]
-            matrix[square][row] = matrix[row][square]
-            matrix[row][square] = temp
+        for col in range(row, len(matrix[row])):
+            temp = matrix[col][row]
+            matrix[col][row] = matrix[row][col]
+            matrix[row][col] = temp
 
 if __name__ == "__main__":
     matrix = [
@@ -33,3 +33,13 @@ def transpose(matrix: list):
             temp = matrix[i][j]
             matrix[i][j] = matrix[j][i]
             matrix[j][i] = temp
+
+#V4 farklı bir versiyon: referansı etkilemez
+def transpose(matrix: list):
+    matrix_copy = [row[:] for row in matrix]
+    for row in range(len(matrix_copy)):
+        for col in range(row, len(matrix_copy[row])):
+            matrix_copy[col][row] = matrix[row][col]
+            matrix_copy[row][col] = matrix[col][row]
+    print(matrix_copy)
+    print(matrix)

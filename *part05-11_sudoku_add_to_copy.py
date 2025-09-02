@@ -52,8 +52,8 @@ if __name__ == "__main__":
 #V2 - mooc.fi:
 def copy_and_add(sudoku: list, row_no: int, column_no: int, number:int):
     new_list = []
-    for r in sudoku:
-        new_list.append(r[:])
+    for row in sudoku:
+        new_list.append(row[:])
     new_list[row_no][column_no] = number
     return new_list
 

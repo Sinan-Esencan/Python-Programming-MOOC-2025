@@ -19,7 +19,9 @@ while (True):
             print("no number")
 
 
-#V2 - mooc.fi:
+#V2 - mooc.fi: **cok daha fonksiyonel: once search() ve add() test edilir ve hard-coding yapılır. sonra main() yaratılır ve soft-coding'e gecilir, 
+# sonra main fonksiyonu dısarıdan cagrılır (bu sayede dosya module olarak import edilirse main fonksiyonunu cagırmak programı yurutmek icin yeterli olur;
+# aynı zamanda persons variable'ı lokal olur ve bir fonksiyona pass edilip return edilmesi garantilenir)**
 def search(persons):
     name = input("name: ")
     if name in persons:

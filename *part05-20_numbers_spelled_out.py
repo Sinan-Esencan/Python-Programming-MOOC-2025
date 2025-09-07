@@ -15,6 +15,7 @@ def dict_of_numbers():
                 numbers[i] = tens[tens_place]
             else:
                 numbers[i] = f"{tens[tens_place]}-{small_numbers[ones_place]}"
+                # alt: numbers[i] = tens[tens_place]+"-"+small_numbers[ones_place]
     return numbers 
 
 

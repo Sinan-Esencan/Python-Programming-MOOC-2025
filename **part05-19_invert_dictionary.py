@@ -1,7 +1,7 @@
 #Please write a function named invert(dictionary: dict), which takes a dictionary as its argument. The dictionary should be inverted in place so that values become keys and keys become values.
 
 def invert(dictionary: dict):
-    copy_dictionary = dictionary.copy()
+    copy_dictionary = dictionary.copy() #listteki slice ile esdeger
     dictionary.clear()
     for key, value in copy_dictionary.items():
         dictionary[value] = key

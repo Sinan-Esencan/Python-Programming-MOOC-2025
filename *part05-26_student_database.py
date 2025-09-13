@@ -16,7 +16,7 @@ def print_student(students:dict, name):
     if name not in students:
         print(f"{name}: no such person in the database")
     else:
-        if not (students[name]): #dict is empty
+        if not (students[name]): #subdict is empty
             print(name+":\n no completed courses")
         else:
             courses = ""
@@ -66,7 +66,7 @@ def summary(students:dict):
             best_average = average
             name_with_best_average = student
 
-#students = {'Peter': {'Introduction to Programming' : 3, 'Advanced Course in Programming' : 2}}
+# ornek: students = {'Peter': {'Introduction to Programming' : 3, 'Advanced Course in Programming' : 2}}
 
     print(f"students {len(students)}")
     print(f"most courses completed {len(most_courses)} {name_with_most_courses}")
@@ -79,6 +79,8 @@ if __name__ == "__main__":
     add_course(students, "Peter", ("Advanced Course in Programming", 0))
     add_course(students, "Peter", ("Introduction to Programming", 3))
     add_course(students, "Peter", ("Advanced Course in Programming", 2))
+    # dictionary mutable oldugundan add_course() metodunda yapılan degisiklikler globaldeki students 
+    # sozlugu de etkiler ve return etmeye gerek kalmaz
     print_student(students, "Peter")
     
     print()

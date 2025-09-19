@@ -5,9 +5,9 @@ def largest():
     with open("numbers.txt") as new_file:
         start = True #bu kısım onemli!
         largest_number = 0
-        # alt: starts with negative infinity: largest_number = float('-inf')
         for line in new_file:
             number = int(line.replace("\n", ""))
+            #int'e çevirmek lazım replace() veya split() kullanınca
             if start or largest_number < number:
                 largest_number = number
                 start = False
@@ -26,3 +26,16 @@ def largest():
             if largest_number < number:
                 largest_number = number
         return largest_number
+
+
+# alt - mooc.fi:
+def largest():
+    with open("numbers.txt") as file:
+        start = True
+        biggest = 0
+        for number in file:
+            if start or int(number) > biggest:
+# int() otomatik olarak whitespace karakterlerini (boşluk, \n, \t vs.) temizler               # 
+                biggest = int(number)
+                start = False
+        return biggest

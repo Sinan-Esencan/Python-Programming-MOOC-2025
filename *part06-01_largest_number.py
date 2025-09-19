@@ -7,7 +7,7 @@ def largest():
         largest_number = 0
         for line in new_file:
             number = int(line.replace("\n", ""))
-            #int'e çevirmek lazım replace() veya split() kullanınca
+            #int'e çevirmek lazım replace() veya strip() kullanınca
             if start or largest_number < number:
                 largest_number = number
                 start = False

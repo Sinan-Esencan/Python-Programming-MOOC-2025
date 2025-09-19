@@ -35,7 +35,7 @@ def largest():
         biggest = 0
         for number in file:
             if start or int(number) > biggest:
-# int() otomatik olarak whitespace karakterlerini (boşluk, \n, \t vs.) temizler               # 
+# int() ve float() otomatik olarak whitespace karakterlerini (boşluk, \n, \t vs.) temizler, bu nedenle replace() veya strip() kullanılmamıs 
                 biggest = int(number)
                 start = False
         return biggest

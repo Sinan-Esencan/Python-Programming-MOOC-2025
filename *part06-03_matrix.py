@@ -16,9 +16,9 @@
 # three functions you are asked to write. Notice that the three functions named above do not take any arguments, but any helper functions you write may take arguments.
 # The file you are working with is always named matrix.txt.
 
-def iterator():
+def iterator(): #matrix_maker ismi daha uygundu
     with open("matrix.txt") as new_file:
-        new_list = [] #list of list
+        new_list = [] #list of lists/2d array/matrix (mtrx ismi daha uygun)
         for line in new_file:
             line = line.replace("\n", "") #alt: line.strip()
             parts = line.split(",") #list of strings
@@ -58,12 +58,12 @@ if __name__ == "__main__":
 # alt1 - mooc.fi: benden daha iyi çözümmüş:
 def read_matrix():
     with open("matrix.txt") as file:
-        m = [] #list of lists (multidimensional list/2d array)
+        m = [] #list of lists (2d array/matrix)
         for row in file:
             mrow = []
             items = row.split(",")
             for item in items:
-                mrow.append(int(item)) #int demek strip() gorevi de goruyor
+                mrow.append(int(item)) #int(), strip() gorevi de goruyor
             m.append(mrow)
     return m
 

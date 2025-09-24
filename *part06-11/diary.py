@@ -67,7 +67,9 @@ except FileNotFoundError:
 with open("diary.txt", "a") as file:
 #*with open sonrası while True loop kullanıldıgı icin dosyaya yazdıgımız veri bellek tamponunda bekler
 #ve ne zamanki 0'a basıp programdan çıkarız o zaman veri veya veriler dosyaya gerçekten yazılır. bunu onlemek
-# icin flush() kullanılabilir*
+# icin flush() kullanılabilir, ve flush() bu tamponu bosaltıp su ana kadar yazılmıs verileri hemen dosyaya 
+# gonderir. file.flush() yerine file.close() kullanılmıs olsaydı ekstradan dosya nesnesini de kapatacaktı ve
+# 2. kere dosyaya yazmaya calıstıgımızda dosyaya yazma hatası verecekti (aynı sekilde append veya read de yapılamazdı)*
     while True:
         print("1 - add an entry, 2 - read entries, 0 - quit")
         function = input("Function: ")

@@ -51,7 +51,7 @@ if __name__ == "__main__":
     filter_solutions()
 
 
-# alt2 - mooc.fi: daha hızlı calısan ve daha kısa kod:
+# alt2 - mooc.fi: daha hızlı calısan ve daha kısa kod (yukarıda eval() kullanmamıza ragmen daha uzun):
 def filter_solutions():
     # Open all lines
     with open("solutions.csv") as source, open("correct.csv", "w") as correct_file, open("incorrect.csv", "w") as incorrect_file:

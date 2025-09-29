@@ -32,13 +32,13 @@ while (True):
     if function == 1:
         entry = input("Diary entry: ")
         with open("diary.txt", "a") as my_file:
-            my_file.write("\n" + entry)
+            my_file.write(entry+"\n")
             print("Diary saved")
     elif function == 2:
         with open("diary.txt") as my_file:
             for line in my_file:
-                print(line, end="")
-            print("") #son satırı yazdıktan sonra bos satıra geçmek icin
+                print(line.strip())
+            # print("") #son satırı yazdıktan sonra bos satıra geçmek icin
     elif function == 0:
         print("Bye now!")
         break
@@ -46,13 +46,12 @@ while (True):
 
 # alt2 - mooc.fi: daha iyi cozum cunku her loopta dosyayı açmak zorunda kalmıyoruz
 # Read the markings first
+content = []
 try:
     with open("diary.txt") as file:
-        content = []
         for row in file:
             content.append(row.replace("\n","")) #alt: row.strip()
 except FileNotFoundError:
-        content = []
         print("No entries yet")
 
 # alt: *using list comprehension:*
@@ -81,8 +80,11 @@ with open("diary.txt", "a") as file:
             print("Diary saved")
         elif function == "2":
             print("Entries:")
-            for entry in content:
-                print(entry)
+            if content: #dosya boş mu diye kontrol ediyoruz
+                for entry in content:
+                    print(entry)
+            else:
+                print("No entries found.")
         elif function == "0":
             print("Bye now!")
             break

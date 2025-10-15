@@ -18,7 +18,7 @@ with open("wordlist.txt") as read_file:
 # print(correct_words_list)
 
 text = input("Write text: ")
-parts = text.split(" ")
+parts = text.split()
 # print(parts)
 result = ""
 for word in parts:

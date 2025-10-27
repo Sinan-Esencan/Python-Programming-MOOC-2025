@@ -63,6 +63,8 @@ if __name__ == "__main__":
 # V2 - Mooc.fi: benim kullandıgım [[a,b,c,d]] yerine [{'ingredients': [c,d], 'name':a, 'prep_time':b}] kullanmıs
 def read_file(filename):
     with open(filename) as file:
+# rows ara depolayıcı ile burada file -(row)-> rows -(row)-> new_recipe_dict -> recipes
+# sırası kullanılmıs. bu rows arrayi kullanmadan da yazabilirdik. bkz: V3
         rows = []
         for row in file:
             rows.append(row.strip())
@@ -128,3 +130,35 @@ if __name__ == "__main__":
     # found_recipes = search_by_time(filename, minutes)
     found_recipes = search_by_ingredient(filename, ingredient)
     print(found_recipes)
+
+
+# V3: read_file() icerisinde rows arrayi kullanmadan dogrudan dosyadan okunabilirdi 
+# (ancak V2'deki daha okunabilir cunku once dosya okunuyor sonra veri isleniyor)
+# file -(row)-> new_recipe_dict -> recipes:
+def read_file(filename):
+    with open(filename) as file:
+        recipes = []
+        name_in_row = True
+        prep_time_in_row = False
+        new_recipe_dict = {"ingredients": []}
+        
+        for row in file:
+            row = row.strip()
+            
+            if name_in_row:  # 1. satır isim (dosyanın boş başlamaması şart)
+                new_recipe_dict["name"] = row
+                name_in_row = False
+                prep_time_in_row = True  # 2. satır prep time
+            elif prep_time_in_row:
+                new_recipe_dict["prep_time"] = int(row)
+                prep_time_in_row = False
+            elif len(row) > 0:  # boşluğa kadar ingredients
+                new_recipe_dict["ingredients"].append(row)
+            else:  # boşluğa geldik
+                recipes.append(new_recipe_dict)
+                name_in_row = True
+                new_recipe_dict = {"ingredients": []}  # sıfırlandı
+        
+        recipes.append(new_recipe_dict)  # dosya boş satırla bitmediği için son recipe'yi ekliyoruz
+        
+    return recipes

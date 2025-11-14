@@ -16,27 +16,27 @@ import random
 
 def lottery_numbers(amount: int, lower: int, upper: int):
     #ise yaramaz cunku aynı sayılar cıkabiliyor:
-    # lottery = []
-    # for x in range(amount):
-    #     lottery.append(random.randint(lower, upper))
-    # return sorted(lottery)
+    lottery = []
+    for x in range(amount): #alt: while len(lottery) < amount:
+        lottery.append(random.randint(lower, upper))
+    return sorted(lottery)
 
     # alt1:
-    # lottery = []
-    # while len(lottery) < amount :
-    #     number = random.randint(lower, upper)
-    #     if number not in lottery:
-    #         lottery.append(number)
-    # return sorted(lottery)
+    lottery = []
+    while len(lottery) < amount :
+        number = random.randint(lower, upper)
+        if number not in lottery:
+            lottery.append(number)
+    return sorted(lottery)
 
     # alt2:
-    # number_pool = list(range(lower, upper))
-    # random.shuffle(number_pool)
-    # weekly_draw = number_pool[0:amount]
-    # return sorted(weekly_draw)
+    number_pool = list(range(lower, upper+1))
+    random.shuffle(number_pool)
+    weekly_draw = number_pool[0:amount]
+    return sorted(weekly_draw)
     
     # alt3: en kolay versiyon:
-    number_pool = list(range(lower, upper))
+    number_pool = list(range(lower, upper+1))
     weekly_draw = random.sample(number_pool,amount) #weekly_draw listtir
     return sorted(weekly_draw)
 

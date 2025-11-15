@@ -26,14 +26,12 @@ from string import ascii_lowercase, digits
 
 def generate_strong_password(length: int, number: bool, special_character: bool):
     symbols = "!?=+-()#"
-
 # a) zorunlu karakterleri listeye koyar:
     pass_list = [choice(ascii_lowercase)] #shuffle edecegimiz icin list kullandık
     if number == True:
         pass_list.append(choice(digits))
     if special_character == True:
         pass_list.append(choice(symbols))
-
 # b) karakter havuzunu doldurur
     char_pool = ascii_lowercase # genel karakter havuzu
     if number == True:
@@ -47,12 +45,9 @@ def generate_strong_password(length: int, number: bool, special_character: bool)
     #     char_pool += symbols
     # elif number == True and special_character == True:
     #     char_pool += digits + symbols
-
 # c) sifrede kalan boslukları havuzdan doldurur:
     for i in range(length - len(pass_list)): #alt:while len(pass_list) < length:
-        pass_list.append(choice(char_pool))
-
-  
+        pass_list.append(choice(char_pool))  
 # d) tum sifreyi karıstırır
     shuffle(pass_list)
     return "".join(pass_list)
@@ -92,7 +87,8 @@ def generate_strong_password(length: int, number: bool, special_character: bool)
     shuffle(pass_list)
     return "".join(pass_list)
 
-# *V3: *mooc.fi cozumunu yapay zeka tavsiye etmiyor cunku add_character() icindeki string concatenation'dan dolayı verimlilik dusuk. shuffle
+
+# V3: *mooc.fi cozumunu yapay zeka tavsiye etmiyor cunku add_character() icindeki string concatenation'dan dolayı verimlilik dusuk. shuffle
 # olmadıgından ve karakterler sadece basa veya sona eklendiginden dolayı sifreleme zayıf. okunabilirlik zayıftır cunku ana mantık while döngüsü
 # ve helper fonksiyon arasında bölünmüştür*
 from random import choice, randint

@@ -52,7 +52,7 @@ def retrieve_all():
     request = urllib.request.urlopen("https://studies.cs.helsinki.fi/stats-mock/api/courses")
     data = request.read()
     course_data = json.loads(data)#loads() transforms json data to a readable format
-    # print(lesson_list,"\n")
+    # print(course_data,"\n")
     lessons = []
     for lesson in course_data:
         # print("lesson", lesson)
@@ -64,21 +64,21 @@ def retrieve_all():
 def retrieve_course(course_name: str):
     request = urllib.request.urlopen("https://studies.cs.helsinki.fi/stats-mock/api/courses/"+course_name+"/stats")
     data = request.read()
-    course_weeks_data = json.loads(data)
-    
+    weekly_course_data = json.loads(data)
+    # print(weekly_course_data)
     lesson_dict = {}
     students_by_weeks = []
     sum_of_hour_total = 0
     sum_of_exercise_total = 0
-    for week, value in course_weeks_data.items():
+    for week, value in weekly_course_data.items():
         students_by_weeks.append(value["students"])
         sum_of_hour_total += value["hour_total"]
         sum_of_exercise_total += value["exercise_total"]
 
-    lesson_dict["weeks"] = len(course_weeks_data)
+    lesson_dict["weeks"] = len(weekly_course_data)
     lesson_dict["students"] = max(students_by_weeks)
-    lesson_dict["hours"] = sum_of_hour_total
-    lesson_dict["hours_average"] = math.floor(lesson_dict["hours"]/lesson_dict["students"])
+    lesson_dict["hours"] = sum_of_hour_total  
+    lesson_dict["hours_average"] = math.floor(lesson_dict["hours"]/lesson_dict["students"]) #approx total hours per student
     lesson_dict["exercises"] = sum_of_exercise_total
     lesson_dict["exercises_average"] = math.floor(lesson_dict["exercises"]/lesson_dict["students"])
     
@@ -88,3 +88,4 @@ def retrieve_course(course_name: str):
 if __name__ == "__main__":
     print(retrieve_all())
     print(retrieve_course("docker2019"))
+

@@ -86,18 +86,16 @@ def cheaters():
     # Iterate through students one by one
     for name in start_times: # **aynı fonksiyonda tum degiskenler erisilebilir**
         if submission_times[name] - start_times[name] > timedelta(hours=3):
-            print(f"{submission_times[name]} - {start_times[name]} = {submission_times[name] - start_times[name]}")
-            print(timedelta(hours=3))
+            # print(f"{submission_times[name]} - {start_times[name]} = {submission_times[name] - start_times[name]}")
+            # print(timedelta(hours=3))
             cheaters.append(name)
-
     return cheaters
-
 
 if __name__ == "__main__":
     print(cheaters())
 
 
-# alt3 - glm 4.6 revizyonu: yukarıdaki kodun daha modüleri ve iyisi:
+# alt3 - glm 4.6 revizyonu: yukarıdaki kodun daha iyisi:
 import csv
 from datetime import datetime, timedelta
 

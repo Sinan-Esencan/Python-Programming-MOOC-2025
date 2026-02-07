@@ -8,6 +8,8 @@
 
 # DO NOT CHANGE THE CODE OF THE CLASS
 # ShoppingList. Write yous solution under it!
+# DO NOT CHANGE THE CODE OF THE CLASS
+# ShoppingList. Write yous solution under it!
 class ShoppingList:
     def __init__(self):
         self.products = []
@@ -63,4 +65,28 @@ if __name__ == "__main__":
     for i in range(1, shopping_list.number_of_items()+1):
         item = shopping_list.item(i)
         amount = shopping_list.amount(i)
+        print(f"{item}: {amount} units")
+
+# alt1: V2'nin alternatifi:
+if __name__ == "__main__":
+    shopping_list = ShoppingList()
+    shopping_list.add("bananas", 10)
+    shopping_list.add("apples", 5)
+    shopping_list.add("pineapple", 1)
+    # print(shopping_list.products)
+    for product in shopping_list.products:
+        item = product[0]
+        amount = product[1]
+        print(f"{item}: {amount} units")
+
+# alt2: V2'nin baska bir alternatifi:
+if __name__ == "__main__":
+    shopping_list = ShoppingList()
+    shopping_list.add("bananas", 10)
+    shopping_list.add("apples", 5)
+    shopping_list.add("pineapple", 1)
+    # print(shopping_list.products)
+    for i in range(0, len(shopping_list.products)):
+        item = shopping_list.products[i][0]
+        amount = shopping_list.products[i][1]
         print(f"{item}: {amount} units")

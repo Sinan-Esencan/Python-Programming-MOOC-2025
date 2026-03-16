@@ -106,7 +106,7 @@ while True:
 print("Sum of numbers:",all_numbers.get_sum())
 print("Mean of numbers:",all_numbers.average())
 print("Sum of even numbers:",even_numbers.get_sum())
-print("Sum of odd numbers:",odd_numbers.average)
+print("Sum of odd numbers:",odd_numbers.get_sum())
 
 
 # alt - mooc.fi: array kullanarak hem degerlerin toplamına hem de counter sayısına ulasılabilir:

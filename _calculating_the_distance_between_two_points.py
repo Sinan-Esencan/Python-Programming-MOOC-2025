@@ -13,6 +13,7 @@ class Point:
     @classmethod
     def origin(cls):
         return cls(0, 0)
+    #cls yerine Point(0, 0) da diyebilirdik (ancak inheritance olursa cls tercih edilmeli)
 
     # This class method creates a new Point based on an existing Point
     # The original Point can be mirrored on either or both of the x and y axes
@@ -65,5 +66,5 @@ print(point2)
 
 line = Line(point, point2)
 print(line.length())
-print(line.centre_point())
+print(line.centre_point()) #yeni obje yaratılırken aynı zamanda bu objenin __str__ metodu cagırılıyor
 print(line)

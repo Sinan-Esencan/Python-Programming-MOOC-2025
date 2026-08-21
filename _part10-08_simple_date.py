@@ -51,6 +51,7 @@ class SimpleDate:
         # year = self.year + months // 12
         # return self.__class__(real_days, real_months, year)
 
+        # daha iyi version (once toplam gune cevrilir)
         time_in_days = self.day_maker()
         total_days = time_in_days + days #zaman + sure = zaman (gun bazında olmasına ragmen zaman)
         date = self.date_maker(total_days)

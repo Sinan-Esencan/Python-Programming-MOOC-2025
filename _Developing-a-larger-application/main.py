@@ -1,29 +1,4 @@
 #bu classı test etmek icin once bagımsız calıstırdık ve asagıdaki komutları girdik:
-# t = FileHandler("phonebook.txt")
-# print(t.load_file())
-class FileHandler: #FILE HANDLING
-    def __init__(self, filename):
-        self.__filename = filename
-
-    def load_file(self): #read işlemi icin
-    #bu fonksiyonla dosyadaki Eric;02-1234567;045-4356713 satırı {'Eric': ['02-1234567', '045-4356713']} olur
-        names = {}
-        with open(self.__filename) as f:
-            for line in f:
-                parts = line.strip().split(';')
-                name, *numbers = parts
-                names[name] = numbers
-        return names
-
-    def save_file(self, phonebook: dict): #write islemi icin
-        with open(self.__filename, "w") as f:
-            for name, numbers in phonebook.items():
-                line = [name] + numbers
-                f.write(";".join(line) + "\n")
-
-
-
-#bu classı test etmek icin once bagımsız calıstırdık ve asagıdaki komutları girdik:
 # phonebook = PhoneBook()
 # phonebook.add_number("Eric", "02-123456")
 # print(phonebook.get_numbers("Eric"))
@@ -33,21 +8,59 @@ class PhoneBook: #LOGIC
         self.__persons = {}
 
     def add_number(self, name: str, number: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
         # add a new dictionary entry with an empty list for the numbers if key is not available
             self.__persons[name] = []
-
         self.__persons[name].append(number)
 
     def get_numbers(self, name: str):
-        if not name in self.__persons:
+        if name not in self.__persons:
             return None
-
         return self.__persons[name] #list return eder
+    
+        # better alt: get() fonksiyonu zaten varsayılan olarak None return eder
+        # return self.__persons.get(name)
 
-    # bu kısım mevcut sozlugu 0 ile exit'e basınca dosyaya write etmek icin 
+    def get_name(self, number: int):
+        return next((name for name, number_list in self.__persons.items() if number in number_list), None)
+
+        # alt2: list comprehension
+        # name_list = [name for name, number_list in self.__persons.items() if number in number_list]
+        # return name_list[0] if name_list else None
+
+        # alt3: classic way
+        # for name, number_list in self.__persons.items():
+        #     if number in number_list:
+        #         return name
+        # return None
+
+    # bu kısım 0 ile exit'e basınca mevcut sozlugu dosyaya write etmek icin 
     def all_entries(self):
         return self.__persons
+
+
+#bu classın reading kısmını test etmek icin once bagımsız calıstırdık ve asagıdaki komutları girdik:
+# t = FileHandler("phonebook.txt")
+# print(t.load_file())
+class FileHandler: #FILE HANDLING
+    def __init__(self, filename):
+        self.__filename = filename
+
+    def load_file(self): #read işlemi icin: dosya > sozluk sırası
+#bu fonksiyonla dosyadaki Eric;02-1234567;045-4356713 satırı {'Eric': ['02-1234567', '045-4356713']} olur
+        names = {}
+        with open(self.__filename) as f:
+            for line in f:
+                parts = line.strip().split(';')
+                name, *numbers = parts
+                names[name] = numbers
+        return names
+
+    def save_file(self, phonebook: dict): #write islemi icin: sozluk > dosya sırası
+        with open(self.__filename, "w") as f:
+            for name, numbers in phonebook.items():
+                line = [name] + numbers
+                f.write(";".join(line) + "\n")
 
 
 # *ilk basta PhoneBook sınıfını yarattık ve bagımsız olarak test ettik. ikinci olarak PhoneBookApplication
@@ -67,13 +80,17 @@ class PhoneBookApplication: #UI baglayıcı rolunde
     # valuesunu loopluyoruz
         for name, numbers in self.__filehandler.load_file().items():
             for number in numbers:
-                self.__phonebook.add_number(name, number)
+                self.__phonebook.add_number(name, number) #setter
+# yukarıdaki kodu yazınca datayı bir sozlukten diger sozluge aktarmıs olduk, ancak persons sozlugu private
+# olmasaydı asagıdaki gibi daha kısa yoldan yazabilirdik:
+        # self.__phonebook.persons = self.__filehandler.load_file()
 
     def help(self):
         print("commands: ")
         print("0 exit")
         print("1 add entry")
         print("2 search")
+        print("3 search by number")
 
     def add_entry(self):
         name = input("name: ")
@@ -93,9 +110,17 @@ class PhoneBookApplication: #UI baglayıcı rolunde
     def exit(self):
         self.__filehandler.save_file(self.__phonebook.all_entries())
 
+    def search_by_number(self):
+        number = input("number: ")
+        name = self.__phonebook.get_name(number)
+        if name == None:
+            print("unknown number")
+            return
+        print(name)
+
     def execute(self):
         self.help()
-        while True: #loop 0 girene kadar tekrarlanıyor ve 0 girince dosyaya kaydediliyor
+        while True:
             print("")
             command = input("command: ")
             if command == "0":
@@ -105,6 +130,8 @@ class PhoneBookApplication: #UI baglayıcı rolunde
                 self.add_entry()
             elif command == "2":
                 self.search()
+            elif command == "3":
+                self.search_by_number()
             else:
                 self.help()
 

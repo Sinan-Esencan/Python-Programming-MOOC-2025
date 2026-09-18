@@ -1,4 +1,4 @@
-# soru: Advanced Course in Programming > Developing a larger application
+# soru: Advanced Course in Programming > Developing a larger application > Objects in a dictionary
 class ExerciseCounter: #sozlukte value olacak mini class
     def __init__(self):
         self.__exercises = 0
